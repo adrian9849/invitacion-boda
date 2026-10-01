@@ -261,9 +261,13 @@ dialog::backdrop{background:rgba(60,22,6,.6);backdrop-filter:blur(3px)}
      MÚSICA DE FONDO
      Para CAMBIAR LA CANCIÓN: reemplaza el archivo musica/cancion.mp3
      por tu canción (formato .mp3) con el MISMO nombre,
-     o cambia el src de abajo, por ejemplo: src="musica/mi-cancion.mp3"
+     o cambia el link del src de abajo por otro link directo a un .mp3
+     (ej: src="musica/mi-cancion.mp3" o src="https://.../cancion.mp3")
      ========================================================= -->
-<audio id="musica" src="https://mp3tourl.com/audio/1790825652521-c9005056-4eae-4189-bcd1-4ed615e45c42.mp3" loop preload="auto"></audio>
+<audio id="musica" loop preload="auto"
+       src="https://mp3tourl.com/audio/1790825652521-c9005056-4eae-4189-bcd1-4ed615e45c42.mp3"
+       onerror="if(!this.dataset.r){this.dataset.r=1;this.src='musica/cancion.mp3';}"></audio>
+<!-- ↑ Si el link de arriba deja de funcionar, se usará automáticamente musica/cancion.mp3 -->
 
 <!-- ============ PORTADA DE ENTRADA ============ -->
 <div id="portada" class="textura">
@@ -271,9 +275,24 @@ dialog::backdrop{background:rgba(60,22,6,.6);backdrop-filter:blur(3px)}
   <p class="bienvenida">Bienvenidos a la invitación de</p>
   <h1 class="titulo-nombres">Estefanía y Adrian</h1>
   <p class="nota">La música de fondo es parte de la experiencia</p>
-  <button class="btn" id="entrarConMusica">Ingresar con música</button>
-  <button class="btn" id="entrarSinMusica">Ingresar sin música</button>
+  <button class="btn" id="entrarConMusica" onclick="entrarInvitacion(true)">Ingresar con música</button>
+  <button class="btn" id="entrarSinMusica" onclick="entrarInvitacion(false)">Ingresar sin música</button>
 </div>
+
+<!-- Script de entrada: va separado para que la invitación SIEMPRE abra,
+     aunque haya un error en otra parte del código -->
+<script>
+function entrarInvitacion(conMusica){
+  var p = document.getElementById("portada");
+  if (p) p.classList.add("oculto");
+  document.body.classList.remove("bloqueado");
+  // si el script principal falló, mostramos todo igual
+  setTimeout(function(){ if(!window.__invitacionOK) document.querySelectorAll(".reveal").forEach(function(s){ s.classList.add("visible"); }); }, 300);
+  window.scrollTo(0,0);
+  var m = document.getElementById("musica");
+  if (conMusica && m) { var r = m.play(); if (r && r.catch) r.catch(function(){}); }
+}
+</script>
 
 <div class="petalos" id="petalos" aria-hidden="true"></div>
 
@@ -495,8 +514,8 @@ dialog::backdrop{background:rgba(60,22,6,.6);backdrop-filter:blur(3px)}
   <h3>Lluvia de sobres</h3>
   <p style="text-align:center">Su presencia y cariño son nuestro mejor regalo. Si desean tener un detalle con nosotros, una muestra de cariño en sobre será muy bien recibida y nos ayudará a dar los primeros pasos en nuestro nuevo hogar.</p>
   <div class="pagos">
-    <div class="pago"><span class="app yape">Yape</span><span class="numero" id="numYape"></span><span class="titular" id="titYape"></span><button class="copiar" data-copiar="yape">Copiar número</button></div>
-    <div class="pago"><span class="app plin">Plin</span><span class="numero" id="numPlin"></span><span class="titular" id="titPlin"></span><button class="copiar" data-copiar="plin">Copiar número</button></div>
+    <div class="pago"><div><span class="app yape">Yape</span> <span class="app plin">Plin</span></div><span class="numero" id="num0"></span><span class="titular" id="tit0"></span><button class="copiar" data-copiar="0">Copiar número</button></div>
+    <div class="pago"><div><span class="app yape">Yape</span> <span class="app plin">Plin</span></div><span class="numero" id="num1"></span><span class="titular" id="tit1"></span><button class="copiar" data-copiar="1">Copiar número</button></div>
   </div>
   <p style="text-align:center;font-style:italic;margin:0">Con todo nuestro amor, ¡gracias!</p>
 </div></dialog>
@@ -511,9 +530,11 @@ const CONFIG = {
   // Fecha y hora de la boda (hora de Lima, UTC-5)
   fechaBoda: "2026-10-24T21:00:00-05:00",
 
-  // ⚠️ CAMBIA por tus números reales (solo números, sin espacios)
-  yape: { numero: "907859353", titular: "Adrian Miranda" },
-  plin: { numero: "960806732", titular: "Estefanía Tasayco" },
+  // Números para Yape / Plin (solo números, entre comillas, sin espacios)
+  cuentas: [
+    { numero: "907859353", titular: "Adrian Miranda" },
+    { numero: "960806732", titular: "Estefanía Tasayco" }
+  ],
 
   // WhatsApp para confirmar asistencia y sugerir canciones (51 + celular)
   whatsapp: "51907859353",
@@ -523,9 +544,14 @@ const CONFIG = {
   // Ubicación: puedes pegar aquí el link exacto de Google Maps (Compartir → Copiar vínculo)
   mapa: "https://maps.app.goo.gl/usyvLbLLALYhu3L49",
 
-  // Fotos de la galería "Retratos de nuestro amor". Agrega más así:
-  // ["img/foto-pareja.jpg", "img/foto2.jpg", "img/foto3.jpg"]
-  fotos: ["img/foto-pareja.jpg"] ["img/foto2.jpg"] ["img/foto3.jpg"],
+  // Fotos de la galería "Retratos de nuestro amor".
+  // src = archivo dentro de la carpeta img ; pos = qué parte de la foto se ve (opcional)
+  // ⚠️ Cuida que cada línea termine en coma, menos la última.
+  fotos: [
+    { src: "img/foto-pareja.jpg", pos: "center 62%" },
+    { src: "img/foto2.jpg",       pos: "center 40%" },
+    { src: "img/foto3.jpg",       pos: "center 35%" }
+  ],
 
   hashtag: "#EstefaniaYAdrian",
 
@@ -550,15 +576,14 @@ $("hashtag").textContent = CONFIG.hashtag;
 
 /* ---- Regalos ---- */
 const fmt = n => n.replace(/(\d{3})(\d{3})(\d{3})/, "$1 $2 $3");
-$("numYape").textContent = fmt(CONFIG.yape.numero); $("titYape").textContent = CONFIG.yape.titular;
-$("numPlin").textContent = fmt(CONFIG.plin.numero); $("titPlin").textContent = CONFIG.plin.titular;
+CONFIG.cuentas.forEach((c,i) => { if($("num"+i)){ $("num"+i).textContent = fmt(c.numero); $("tit"+i).textContent = c.titular; } });
 
 async function copiar(txt, msg){
   try { await navigator.clipboard.writeText(txt); }
   catch(e){ const t=document.createElement("textarea"); t.value=txt; document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove(); }
   const a=$("aviso"); a.textContent=msg; a.classList.add("ver"); setTimeout(()=>a.classList.remove("ver"),1800);
 }
-document.querySelectorAll("[data-copiar]").forEach(b => b.onclick = () => copiar(CONFIG[b.dataset.copiar].numero, "¡Número copiado!"));
+document.querySelectorAll("[data-copiar]").forEach(b => b.onclick = () => copiar(CONFIG.cuentas[b.dataset.copiar].numero, "¡Número copiado!"));
 $("btnHashtag").onclick = () => copiar(CONFIG.hashtag, "¡Hashtag copiado!");
 
 /* ---- Modales ---- */
@@ -582,10 +607,12 @@ if (q.get("para")) {
 
 /* ---- Galería ---- */
 const gal = $("galeria"), pts = $("puntos");
-CONFIG.fotos.forEach((src, i) => {
+CONFIG.fotos.forEach((foto, i) => {
+  const src = typeof foto === "string" ? foto : foto.src;
   const f = document.createElement("figure");
   f.innerHTML = '<img loading="lazy" alt="Estefanía y Adrian"><figcaption>Estefanía &amp; Adrian</figcaption>';
   f.querySelector("img").src = src;
+  if (foto.pos) f.querySelector("img").style.objectPosition = foto.pos;
   gal.appendChild(f);
   if (CONFIG.fotos.length > 1) pts.appendChild(document.createElement("span"));
 });
@@ -605,14 +632,7 @@ const act = () => mBtn.classList.toggle("sonando", !musica.paused);
 musica.addEventListener("play", act); musica.addEventListener("pause", act);
 mBtn.onclick = () => musica.paused ? musica.play() : musica.pause();
 
-function entrar(conMusica){
-  $("portada").classList.add("oculto");
-  document.body.classList.remove("bloqueado");
-  if (conMusica) musica.play().catch(()=>{});
-  window.scrollTo(0,0);
-}
-$("entrarConMusica").onclick = () => entrar(true);
-$("entrarSinMusica").onclick = () => entrar(false);
+
 
 /* ---- Cuenta regresiva ---- */
 const meta = new Date(CONFIG.fechaBoda).getTime(), pad = n => String(n).padStart(2,"0");
@@ -637,6 +657,7 @@ for (let i=0;i<9;i++){
 /* ---- Aparición al hacer scroll ---- */
 const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("visible"); obs.unobserve(e.target);} }), {threshold:.12});
 document.querySelectorAll(".reveal").forEach(s => obs.observe(s));
+window.__invitacionOK = true;
 </script>
 </body>
 </html>

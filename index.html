@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Estefanía & Adrian · Nuestra Boda Civil</title>
+<meta name="description" content="Estefanía & Adrian te invitan a su boda civil · Sábado 24 de octubre de 2026 · 9:00 pm">
+<!-- Vista previa al compartir el link (WhatsApp / Facebook) -->
+<meta property="og:title" content="Estefanía & Adrian · ¡Nos casamos!">
+<meta property="og:description" content="Sábado 24 de octubre de 2026 · 9:00 pm · Local Comunal La Flor de Carabayllo">
+<meta property="og:image" content="img/preview.jpg">
+<meta name="theme-color" content="#DC834C">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Bodoni+Moda:wght@400;500&family=Open+Sans:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   PALETA DE COLORES — el color principal es RGB(220,131,76)
+   Si quieres ajustar un tono, cámbialo solo aquí.
+   ========================================================= */
+:root{
+  --base:#DC834C;        /* rgb(220,131,76) color principal */
+  --base-claro:#E59563;
+  --base-osc:#C46A35;
+  --base-prof:#8A3E1A;   /* terracota profundo para botones y detalles */
+  --crema:#FFF3E3;       /* títulos y botones */
+  --arena:#F7DFC4;       /* tarjetas */
+  --choco:#4A230F;       /* texto */
+  --oliva:#66752A;
+  --girasol:#FFC22E;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{
+  font-family:'Open Sans',system-ui,sans-serif;font-weight:400;
+  color:var(--choco);background:var(--base);
+  font-size:clamp(16px,2.2vw,18px);line-height:1.6;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+body.bloqueado{overflow:hidden;height:100vh}
+img{max-width:100%;display:block}
+a{color:inherit}
+/* textura suave tipo papel */
+.textura{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .12 0 0 0 0 .03 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 50% 0%, var(--base-claro) 0%, var(--base) 55%, var(--base-osc) 130%);
+}
+
+/* ---------- Tipografías ---------- */
+.titulo-nombres{font-family:'Fraunces',Georgia,serif;font-weight:600;color:var(--crema);line-height:1.02;
+  text-shadow:0 2px 0 rgba(138,62,26,.25)}
+.titulo-seccion{font-family:'Bodoni Moda',Georgia,serif;font-weight:400;color:var(--crema);
+  font-size:clamp(32px,8vw,44px);line-height:1.15;letter-spacing:.03em;text-shadow:0 2px 0 rgba(138,62,26,.22)}
+.titulo-fraunces{font-family:'Fraunces',Georgia,serif;font-weight:600;color:var(--crema);font-size:clamp(34px,9vw,46px);text-shadow:0 2px 0 rgba(138,62,26,.22)}
+.etiqueta{font-family:'Fraunces',serif;font-weight:700;letter-spacing:.06em;color:var(--base-prof);font-size:1.15rem;text-transform:uppercase}
+.script{font-family:'Great Vibes',cursive}
+
+/* ---------- Botones ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  min-width:220px;padding:.85rem 1.8rem;border-radius:40px;border:none;cursor:pointer;
+  background:var(--crema);color:var(--base-prof);font-family:'Open Sans',sans-serif;font-weight:600;font-size:.98rem;
+  text-decoration:none;box-shadow:0 6px 16px rgba(110,45,15,.22);transition:transform .2s, box-shadow .2s, background .2s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(110,45,15,.3)}
+.btn.ancho{width:100%;max-width:340px}
+.btn.oscuro{background:var(--base-prof);color:var(--crema)}
+.btn svg{width:18px;height:18px;fill:currentColor}
+
+/* ---------- Estructura ---------- */
+.seccion{position:relative;text-align:center;padding:56px 24px}
+main{overflow-x:clip}
+.contenedor{max-width:560px;margin:0 auto;position:relative}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s ease, transform 1s ease}
+.reveal.visible{opacity:1;transform:none}
+.linea-titulo{display:inline-block;padding:.35rem 1.2rem;border-top:1.5px solid rgba(255,243,227,.7);border-bottom:1.5px solid rgba(255,243,227,.7);margin-bottom:1.8rem}
+.icono-linea{display:block;width:78px;height:78px;margin:0 auto 1rem;fill:none;stroke:var(--crema);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.onda{display:block;width:100%;height:60px}
+
+/* ============ PORTADA (entrada) ============ */
+#portada{
+  position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:24px;transition:opacity 1s ease, visibility 1s;
+}
+#portada.oculto{opacity:0;visibility:hidden}
+#portada .ramo{width:min(300px,76vw);height:auto;aspect-ratio:240/200;margin-bottom:.6rem;animation:aparecer 1.4s ease both}
+#portada .bienvenida{color:var(--crema);font-size:1.05rem;opacity:.95}
+#portada h1{font-size:clamp(44px,12vw,64px);margin:.5rem 0 .9rem}
+#portada .nota{color:var(--choco);font-size:.95rem;margin-bottom:1.4rem}
+#portada .btn{margin:.4rem 0;min-width:240px}
+@keyframes aparecer{from{opacity:0;transform:scale(.85) translateY(10px)}to{opacity:1;transform:none}}
+
+/* ============ PORTADA CON FOTO ============ */
+#hero{padding:0 0 40px}
+.hero-foto{position:relative;max-width:620px;margin:0 auto}
+.hero-foto img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 62%;max-height:92vh;border-radius:0 0 50% 50% / 0 0 46px 46px;box-shadow:0 14px 30px rgba(90,35,10,.25)}
+.hero-foto .curva{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:auto}
+.hero-foto .esq{position:absolute;bottom:-50px;width:clamp(130px,36vw,190px);height:auto;aspect-ratio:1;z-index:3;filter:drop-shadow(0 6px 10px rgba(80,30,5,.25))}
+.hero-foto .esq.izq{left:-16px;transform:rotate(-10deg)}
+.hero-foto .esq.der{right:-16px;transform:scaleX(-1) rotate(-10deg)}
+.fecha-caja{display:inline-block;margin-top:46px;padding:.35rem 1.4rem;border:1.5px solid var(--crema);
+  font-family:'Fraunces',serif;font-weight:600;font-size:clamp(22px,6vw,28px);color:var(--crema);letter-spacing:.06em}
+.nombres-hero{font-size:clamp(64px,19vw,104px);margin-top:1.4rem}
+.amp{display:flex;align-items:center;justify-content:center;gap:14px;margin:.4rem auto;max-width:360px}
+.amp::before,.amp::after{content:"";flex:1;height:1.5px;background:rgba(255,243,227,.75)}
+.amp span{width:58px;height:58px;border-radius:50%;border:1.5px solid rgba(255,243,227,.75);display:flex;align-items:center;justify-content:center;
+  font-family:'Great Vibes',cursive;color:var(--crema);font-size:34px;padding-top:4px}
+.civil{margin-top:1.2rem;font-family:'Bodoni Moda',serif;letter-spacing:.32em;font-size:.82rem;color:var(--crema);text-transform:uppercase}
+
+/* ============ FRASE + CUENTA REGRESIVA ============ */
+.comillas{font-family:'Fraunces',serif;font-size:56px;line-height:.6;color:var(--crema);display:block}
+.frase{font-size:1.12rem;max-width:420px;margin:.8rem auto;color:var(--choco)}
+.reloj{
+  position:relative;width:min(330px,84vw);aspect-ratio:1;margin:70px auto 0;border-radius:50%;
+  background:radial-gradient(circle at 50% 40%, var(--base-prof), #6c2e12);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--crema);
+  box-shadow:0 18px 40px rgba(90,35,10,.35);
+}
+.reloj::before,.reloj::after{content:"";position:absolute;border-radius:50%;border:1.5px solid rgba(255,243,227,.6);pointer-events:none}
+.reloj::before{inset:-14px}
+.reloj::after{inset:-22px;border-color:rgba(255,243,227,.35);transform:rotate(8deg) scale(1.01,.99)}
+.reloj .ramo-reloj{position:absolute;top:-58px;left:-62px;width:170px;height:170px;transform:rotate(-18deg);filter:drop-shadow(0 6px 8px rgba(60,20,5,.3))}
+.reloj h3{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(36px,10vw,46px);color:#F7D7A8;margin-bottom:.4rem}
+.reloj .num{display:flex}
+.reloj .num div{padding:0 clamp(8px,2.6vw,14px);border-right:1px solid rgba(255,243,227,.45);text-align:center}
+.reloj .num div:last-child{border:none}
+.reloj b{display:block;font-family:'Fraunces',serif;font-weight:500;font-size:clamp(28px,8vw,38px);line-height:1.1;color:#F7D7A8}
+.reloj small{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+.reloj .mini{width:44px;height:44px;margin-top:.8rem;animation:girar 18s linear infinite}
+@keyframes girar{to{transform:rotate(360deg)}}
+@keyframes mecer{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+
+/* ============ PASE PERSONALIZADO ============ */
+#pase{display:none}
+.pase-num{width:64px;height:64px;border-radius:50%;background:var(--crema);color:var(--base-prof);display:flex;align-items:center;justify-content:center;
+  margin:0 auto .8rem;font-family:'Fraunces',serif;font-weight:700;font-size:32px}
+.chip{display:inline-block;background:rgba(138,62,26,.28);color:var(--crema);padding:.35rem 1rem;margin:.3rem;border-radius:4px;font-size:1.05rem}
+
+/* ============ PADRES ============ */
+.padres{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:.6rem}
+.padres p{color:var(--choco);font-size:1.02rem}
+
+/* ============ EVENTO ============ */
+.bloque{margin-bottom:2.2rem}
+.bloque .etiqueta{display:block;margin-bottom:.3rem}
+.bloque p{margin-bottom:1rem;font-size:1.08rem}
+
+/* ============ GALERÍA ============ */
+.galeria{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 12%;margin:0 -24px;scrollbar-width:none}
+.galeria::-webkit-scrollbar{display:none}
+.galeria figure{flex:0 0 76%;max-width:400px;scroll-snap-align:center;background:var(--arena);padding:14px 14px 54px;box-shadow:0 12px 28px rgba(80,30,5,.25);position:relative}
+.galeria figure img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 62%}
+.galeria figcaption{position:absolute;left:0;right:0;bottom:12px;font-family:'Great Vibes',cursive;font-size:28px;color:var(--base-prof)}
+.galeria.unica{justify-content:center}
+.puntos{display:flex;justify-content:center;gap:10px;margin-top:18px}
+.puntos span{width:9px;height:9px;border-radius:50%;background:rgba(255,243,227,.5);transition:.3s}
+.puntos span.on{background:var(--crema);transform:scale(1.2)}
+
+/* ============ TARJETAS FIESTA ============ */
+.tarjetas{display:grid;gap:34px;margin-top:2.4rem}
+.tarjeta{position:relative;background:var(--arena);border-radius:22px;padding:34px 24px 30px;box-shadow:0 14px 30px rgba(90,35,10,.2)}
+.tarjeta h4{font-family:'Fraunces',serif;font-weight:700;letter-spacing:.08em;color:var(--base-prof);font-size:1.15rem;margin-bottom:.8rem}
+.tarjeta svg.ic{width:74px;height:74px;margin:0 auto .8rem;fill:none;stroke:var(--base);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tarjeta p{color:var(--choco);margin-bottom:1.3rem}
+.tarjeta .flor{position:absolute;width:120px;height:120px;top:-46px;left:-34px;transform:rotate(-14deg);filter:drop-shadow(0 4px 6px rgba(60,20,5,.2))}
+@media (min-width:860px){
+  .tarjetas{grid-template-columns:repeat(3,1fr);gap:24px}
+  .fiesta .contenedor{max-width:980px}
+}
+
+/* ============ COMPARTIR (hashtag) ============ */
+#compartir{position:relative;padding:0;overflow:hidden;text-align:center}
+#compartir .fondo{position:absolute;inset:0;background:url(img/foto-pareja.jpg) center 55%/cover no-repeat}
+#compartir .fondo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(220,131,76,.55),rgba(74,35,15,.72))}
+#compartir .contenido{position:relative;padding:110px 24px;color:var(--crema)}
+#compartir .hashtag{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,7vw,38px);margin:.8rem 0 1.4rem}
+
+/* ============ PIE ============ */
+footer{text-align:center;padding:80px 24px 0}
+footer .titulo-nombres{font-size:clamp(56px,15vw,80px)}
+footer .amp-mini{font-family:'Great Vibes',cursive;color:var(--crema);font-size:36px;display:block;line-height:1}
+footer nav{display:flex;flex-direction:column;gap:.6rem;margin:2rem 0 3rem}
+footer nav a{color:var(--crema);text-decoration:none;font-size:1.05rem}
+footer nav a:hover{text-decoration:underline}
+.pie-final{background:var(--arena);padding:22px 16px 90px;color:var(--base-prof);font-size:.92rem}
+
+/* ============ MODALES ============ */
+dialog{margin:auto;border:none;border-radius:22px;padding:0;max-width:min(440px,92vw);width:100%;background:var(--arena);color:var(--choco);box-shadow:0 30px 60px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(60,22,6,.6);backdrop-filter:blur(3px)}
+.modal{padding:38px 26px 28px;text-align:center;position:relative}
+.modal h3{font-family:'Fraunces',serif;font-weight:600;color:var(--base-prof);font-size:1.7rem;margin-bottom:.8rem}
+.modal p, .modal li{text-align:left;margin-bottom:.7rem}
+.modal ul{list-style:none;margin:1rem 0}
+.modal li{padding-left:28px;position:relative}
+.modal li::before{content:"";position:absolute;left:0;top:.35em;width:16px;height:16px;border-radius:50%;
+  background:radial-gradient(circle,#4a230f 0 35%,#FFC22E 36% 100%)}
+.cerrar{position:absolute;top:12px;right:14px;width:36px;height:36px;border-radius:50%;border:none;background:rgba(138,62,26,.12);color:var(--base-prof);font-size:22px;cursor:pointer;line-height:1}
+.pagos{display:grid;gap:12px;margin:1.2rem 0}
+.pago{background:#fff8ef;border-radius:14px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:.25rem}
+.pago .app{font-weight:700;color:#fff;padding:.15rem .9rem;border-radius:20px;font-size:.88rem;letter-spacing:.05em}
+.yape{background:#742284}.plin{background:#00a19a}
+.pago .numero{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;color:var(--choco);letter-spacing:.04em}
+.pago .titular{font-size:.9rem;color:var(--base-prof)}
+.copiar{border:1.5px solid var(--base-prof);background:none;color:var(--base-prof);border-radius:20px;padding:.3rem 1rem;font-weight:600;font-size:.8rem;cursor:pointer;margin-top:.3rem}
+.copiar:hover{background:var(--base-prof);color:var(--crema)}
+
+/* ============ MÚSICA ============ */
+#musicaBtn{position:fixed;right:16px;bottom:16px;z-index:90;width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;
+  background:var(--crema);box-shadow:0 6px 18px rgba(70,25,5,.35);display:flex;align-items:center;justify-content:center;
+  margin-bottom:env(safe-area-inset-bottom)}
+#musicaBtn svg{width:24px;height:24px;fill:var(--base-prof)}
+#musicaBtn.sonando{animation:pulso 2.2s ease-in-out infinite}
+#musicaBtn.sonando svg.nota{animation:mecer 1.6s ease-in-out infinite}
+@keyframes pulso{0%,100%{box-shadow:0 0 0 0 rgba(255,243,227,.6)}50%{box-shadow:0 0 0 12px rgba(255,243,227,0)}}
+#musicaBtn .tachado{position:absolute;width:30px;height:2px;background:var(--base-prof);transform:rotate(-45deg);border-radius:2px}
+#musicaBtn.sonando .tachado{display:none}
+
+#aviso{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:var(--choco);color:var(--crema);
+  padding:.6rem 1.2rem;border-radius:30px;font-size:.9rem;opacity:0;transition:.3s;z-index:200;pointer-events:none}
+#aviso.ver{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* pétalos cayendo */
+.petalos{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
+.petalos i{position:absolute;top:-30px;width:10px;height:22px;border-radius:50% 50% 50% 50%/70% 70% 30% 30%;
+  background:linear-gradient(#ffd85c,#f29a0b);opacity:.75;animation:caer linear infinite}
+@keyframes caer{0%{transform:translate(0,-30px) rotate(0)}100%{transform:translate(60px,110vh) rotate(540deg)}}
+
+@media (max-width:480px){
+  .padres{grid-template-columns:1fr;gap:1rem}
+  .reloj .ramo-reloj{width:130px;height:130px;top:-46px;left:-40px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  .petalos{display:none}
+}
+</style>
+</head>
+<body class="bloqueado textura">
+
+<!-- ===== Dibujos (girasoles, hojas, espigas) reutilizables ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="pet1" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#f29a0b"/><stop offset=".6" stop-color="#ffc22e"/><stop offset="1" stop-color="#ffd85c"/></linearGradient>
+    <linearGradient id="pet2" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#d57f05"/><stop offset="1" stop-color="#f5ad1a"/></linearGradient>
+    <radialGradient id="centro2"><stop offset="0" stop-color="#6b3a12"/><stop offset=".65" stop-color="#3e1f08"/><stop offset="1" stop-color="#2a1405"/></radialGradient>
+    <linearGradient id="hojaG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8f9d45"/><stop offset="1" stop-color="#55631f"/></linearGradient>
+  </defs>
+  <symbol id="girasol" viewBox="-60 -60 120 120"><path d="M0,0 C11.0,-12.0 8.2,-38.4 0,-48.0 C-8.2,-38.4 -11.0,-12.0 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(7.4)"/><path d="M0,0 C11.0,-11.8 8.2,-37.9 0,-47.4 C-8.2,-37.9 -11.0,-11.8 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(26.5)"/><path d="M0,0 C11.0,-12.4 8.2,-39.7 0,-49.7 C-8.2,-39.7 -11.0,-12.4 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(43.0)"/><path d="M0,0 C11.0,-12.7 8.2,-40.6 0,-50.8 C-8.2,-40.6 -11.0,-12.7 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(57.3)"/><path d="M0,0 C11.0,-12.5 8.2,-40.1 0,-50.2 C-8.2,-40.1 -11.0,-12.5 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(74.3)"/><path d="M0,0 C11.0,-11.9 8.2,-38.0 0,-47.5 C-8.2,-38.0 -11.0,-11.9 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(91.6)"/><path d="M0,0 C11.0,-13.3 8.2,-42.6 0,-53.2 C-8.2,-42.6 -11.0,-13.3 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(110.9)"/><path d="M0,0 C11.0,-12.1 8.2,-38.8 0,-48.5 C-8.2,-38.8 -11.0,-12.1 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(126.2)"/><path d="M0,0 C11.0,-13.5 8.2,-43.4 0,-54.2 C-8.2,-43.4 -11.0,-13.5 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(146.4)"/><path d="M0,0 C11.0,-12.5 8.2,-39.9 0,-49.9 C-8.2,-39.9 -11.0,-12.5 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(163.2)"/><path d="M0,0 C11.0,-11.8 8.2,-37.7 0,-47.2 C-8.2,-37.7 -11.0,-11.8 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(182.8)"/><path d="M0,0 C11.0,-12.3 8.2,-39.2 0,-49.1 C-8.2,-39.2 -11.0,-12.3 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(199.2)"/><path d="M0,0 C11.0,-11.9 8.2,-38.2 0,-47.7 C-8.2,-38.2 -11.0,-11.9 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(212.1)"/><path d="M0,0 C11.0,-13.3 8.2,-42.5 0,-53.2 C-8.2,-42.5 -11.0,-13.3 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(230.2)"/><path d="M0,0 C11.0,-12.8 8.2,-41.1 0,-51.3 C-8.2,-41.1 -11.0,-12.8 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(246.6)"/><path d="M0,0 C11.0,-12.4 8.2,-39.8 0,-49.7 C-8.2,-39.8 -11.0,-12.4 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(266.5)"/><path d="M0,0 C11.0,-11.8 8.2,-37.8 0,-47.3 C-8.2,-37.8 -11.0,-11.8 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(283.1)"/><path d="M0,0 C11.0,-12.1 8.2,-38.7 0,-48.4 C-8.2,-38.7 -11.0,-12.1 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(297.3)"/><path d="M0,0 C11.0,-12.5 8.2,-40.1 0,-50.1 C-8.2,-40.1 -11.0,-12.5 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(318.2)"/><path d="M0,0 C11.0,-12.8 8.2,-41.1 0,-51.4 C-8.2,-41.1 -11.0,-12.8 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(333.1)"/><path d="M0,0 C11.0,-12.3 8.2,-39.3 0,-49.1 C-8.2,-39.3 -11.0,-12.3 0,0Z" fill="url(#pet2)" stroke="#b86d06" stroke-width=".5" transform="rotate(351.1)"/><path d="M0,0 C10.0,-11.8 7.5,-37.8 0,-47.2 C-7.5,-37.8 -10.0,-11.8 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(1.8)"/><path d="M0,-6 L0,-40.1" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(1.8)"/><path d="M0,0 C10.0,-11.6 7.5,-37.1 0,-46.3 C-7.5,-37.1 -10.0,-11.6 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(15.6)"/><path d="M0,-6 L0,-39.4" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(15.6)"/><path d="M0,0 C10.0,-12.1 7.5,-38.8 0,-48.5 C-7.5,-38.8 -10.0,-12.1 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(34.4)"/><path d="M0,-6 L0,-41.2" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(34.4)"/><path d="M0,0 C10.0,-11.1 7.5,-35.5 0,-44.3 C-7.5,-35.5 -10.0,-11.1 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(52.8)"/><path d="M0,-6 L0,-37.7" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(52.8)"/><path d="M0,0 C10.0,-10.8 7.5,-34.5 0,-43.1 C-7.5,-34.5 -10.0,-10.8 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(71.5)"/><path d="M0,-6 L0,-36.7" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(71.5)"/><path d="M0,0 C10.0,-11.9 7.5,-38.1 0,-47.6 C-7.5,-38.1 -10.0,-11.9 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(85.2)"/><path d="M0,-6 L0,-40.5" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(85.2)"/><path d="M0,0 C10.0,-11.4 7.5,-36.6 0,-45.7 C-7.5,-36.6 -10.0,-11.4 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(100.8)"/><path d="M0,-6 L0,-38.9" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(100.8)"/><path d="M0,0 C10.0,-11.8 7.5,-37.6 0,-47.0 C-7.5,-37.6 -10.0,-11.8 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(117.2)"/><path d="M0,-6 L0,-40.0" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(117.2)"/><path d="M0,0 C10.0,-11.6 7.5,-37.1 0,-46.3 C-7.5,-37.1 -10.0,-11.6 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(138.7)"/><path d="M0,-6 L0,-39.4" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(138.7)"/><path d="M0,0 C10.0,-11.1 7.5,-35.6 0,-44.5 C-7.5,-35.6 -10.0,-11.1 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(156.5)"/><path d="M0,-6 L0,-37.8" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(156.5)"/><path d="M0,0 C10.0,-11.6 7.5,-37.2 0,-46.5 C-7.5,-37.2 -10.0,-11.6 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(172.6)"/><path d="M0,-6 L0,-39.5" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(172.6)"/><path d="M0,0 C10.0,-11.4 7.5,-36.4 0,-45.5 C-7.5,-36.4 -10.0,-11.4 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(189.1)"/><path d="M0,-6 L0,-38.7" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(189.1)"/><path d="M0,0 C10.0,-12.2 7.5,-39.2 0,-49.0 C-7.5,-39.2 -10.0,-12.2 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(207.8)"/><path d="M0,-6 L0,-41.6" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(207.8)"/><path d="M0,0 C10.0,-11.7 7.5,-37.6 0,-47.0 C-7.5,-37.6 -10.0,-11.7 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(222.7)"/><path d="M0,-6 L0,-39.9" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(222.7)"/><path d="M0,0 C10.0,-11.8 7.5,-37.8 0,-47.2 C-7.5,-37.8 -10.0,-11.8 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(237.4)"/><path d="M0,-6 L0,-40.2" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(237.4)"/><path d="M0,0 C10.0,-12.3 7.5,-39.4 0,-49.3 C-7.5,-39.4 -10.0,-12.3 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(258.0)"/><path d="M0,-6 L0,-41.9" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(258.0)"/><path d="M0,0 C10.0,-11.1 7.5,-35.4 0,-44.3 C-7.5,-35.4 -10.0,-11.1 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(276.2)"/><path d="M0,-6 L0,-37.7" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(276.2)"/><path d="M0,0 C10.0,-11.8 7.5,-37.6 0,-47.0 C-7.5,-37.6 -10.0,-11.8 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(290.7)"/><path d="M0,-6 L0,-40.0" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(290.7)"/><path d="M0,0 C10.0,-11.4 7.5,-36.4 0,-45.6 C-7.5,-36.4 -10.0,-11.4 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(305.7)"/><path d="M0,-6 L0,-38.7" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(305.7)"/><path d="M0,0 C10.0,-10.8 7.5,-34.5 0,-43.1 C-7.5,-34.5 -10.0,-10.8 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(323.7)"/><path d="M0,-6 L0,-36.7" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(323.7)"/><path d="M0,0 C10.0,-11.9 7.5,-38.2 0,-47.7 C-7.5,-38.2 -10.0,-11.9 0,0Z" fill="url(#pet1)" stroke="#b86d06" stroke-width=".5" transform="rotate(340.2)"/><path d="M0,-6 L0,-40.6" stroke="#e39a10" stroke-width=".6" opacity=".6" transform="rotate(340.2)"/><circle r="21" fill="#3b1d08"/><circle r="20" fill="url(#centro2)"/><circle cx="0.0" cy="0.0" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-1.2" cy="1.1" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="0.2" cy="-2.3" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="1.7" cy="2.3" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-3.2" cy="-0.6" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="3.1" cy="-2.0" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-1.0" cy="3.9" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-2.0" cy="-3.9" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="4.4" cy="1.6" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-4.6" cy="1.9" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="2.2" cy="-4.7" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="1.6" cy="5.2" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-4.9" cy="-2.9" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="5.8" cy="-1.3" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-3.6" cy="5.1" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-0.8" cy="-6.3" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="5.0" cy="4.3" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-6.8" cy="0.3" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="5.0" cy="-4.9" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-0.3" cy="7.2" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-4.7" cy="-5.7" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="7.5" cy="1.0" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-6.4" cy="4.4" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="1.7" cy="-7.7" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="4.0" cy="7.0" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-7.9" cy="-2.5" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="7.6" cy="-3.5" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-3.3" cy="7.9" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-3.0" cy="-8.2" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="7.9" cy="4.1" r="0.8" fill="#1f0e03" opacity=".85"/><circle cx="-8.7" cy="2.3" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="5.0" cy="-7.7" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="1.6" cy="9.2" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-7.5" cy="-5.8" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="9.6" cy="-0.8" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-6.6" cy="7.2" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="0.0" cy="-9.9" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="6.7" cy="7.4" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-10.1" cy="-0.9" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="8.2" cy="-6.2" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-1.9" cy="10.3" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-5.6" cy="-8.9" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="10.3" cy="2.8" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-9.6" cy="4.9" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="3.8" cy="-10.3" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="4.2" cy="10.3" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-10.1" cy="-4.8" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="10.8" cy="-3.3" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-5.8" cy="9.9" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-2.4" cy="-11.3" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="9.5" cy="6.8" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-11.7" cy="1.5" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="7.7" cy="-9.1" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="0.4" cy="12.0" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-8.5" cy="-8.6" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="12.2" cy="0.6" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-9.5" cy="7.9" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="1.7" cy="-12.3" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="7.1" cy="10.3" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-12.4" cy="-2.8" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="11.1" cy="-6.3" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-4.0" cy="12.3" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-5.4" cy="-11.8" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="12.1" cy="5.1" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-12.4" cy="4.4" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="6.2" cy="-11.7" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="3.4" cy="13.0" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-11.3" cy="-7.4" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="13.4" cy="-2.2" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-8.4" cy="10.8" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-1.1" cy="-13.8" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="10.2" cy="9.5" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-14.0" cy="-0.1" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="10.5" cy="-9.4" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-1.4" cy="14.1" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-8.6" cy="-11.4" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="14.1" cy="2.6" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-12.3" cy="7.7" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="3.9" cy="-14.0" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="6.6" cy="13.1" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-13.8" cy="-5.2" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="13.8" cy="-5.5" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-6.5" cy="13.5" r="0.8" fill="#5a3010" opacity=".85"/><circle cx="-4.4" cy="-14.4" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="13.0" cy="7.7" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-14.9" cy="3.1" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="8.9" cy="-12.4" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="1.8" cy="15.3" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-11.7" cy="-10.1" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="15.6" cy="-0.5" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-11.2" cy="10.9" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="0.9" cy="-15.7" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="10.0" cy="12.2" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-15.7" cy="-2.3" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="13.2" cy="-9.0" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-3.7" cy="15.7" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-7.9" cy="-14.1" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="15.4" cy="5.1" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-14.9" cy="6.7" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="6.5" cy="-15.1" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="5.4" cy="15.6" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-14.6" cy="-7.9" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="16.2" cy="-4.1" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-9.2" cy="14.0" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-2.7" cy="-16.6" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="13.3" cy="10.5" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-16.9" cy="1.2" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="11.7" cy="-12.4" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-0.3" cy="17.1" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-11.4" cy="-12.9" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="17.2" cy="1.8" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-13.9" cy="10.4" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="3.3" cy="-17.1" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="9.2" cy="14.9" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-16.9" cy="-4.8" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="15.8" cy="-7.9" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-6.3" cy="16.6" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-6.6" cy="-16.6" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="16.1" cy="7.8" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-17.3" cy="5.1" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="9.3" cy="-15.5" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="3.6" cy="17.8" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-14.8" cy="-10.7" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="18.2" cy="-2.1" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-12.0" cy="13.9" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-0.5" cy="-18.4" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="12.9" cy="13.3" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-18.6" cy="-1.1" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="14.5" cy="-11.7" r="0.95" fill="#d9a441" opacity=".85"/><circle cx="-2.8" cy="18.5" r="0.95" fill="#d9a441" opacity=".85"/></symbol>
+<symbol id="hoja" viewBox="-20 -60 40 62"><path d="M0,0 C-18,-12 -20,-40 0,-58 C20,-40 18,-12 0,0Z" fill="url(#hojaG)"/><path d="M0,-2 L0,-54 M0,-18 L-9,-26 M0,-18 L9,-26 M0,-32 L-8,-40 M0,-32 L8,-40" stroke="#4b5a1c" stroke-width="1" fill="none" opacity=".7"/></symbol>
+<symbol id="espiga" viewBox="-10 -66 20 68"><path d="M0,0 Q2,-30 0,-60" stroke="#c9a46a" stroke-width="1.4" fill="none"/><ellipse cx="-3.2" cy="-18.0" rx="2.2" ry="4.5" fill="#e8c88a" transform="rotate(-25 -3.2 -18.0)"/><ellipse cx="3.2" cy="-20.0" rx="2.2" ry="4.5" fill="#dcb46f" transform="rotate(25 3.2 -20.0)"/><ellipse cx="-3.2" cy="-22.6" rx="2.2" ry="4.5" fill="#e8c88a" transform="rotate(-25 -3.2 -22.6)"/><ellipse cx="3.2" cy="-24.6" rx="2.2" ry="4.5" fill="#dcb46f" transform="rotate(25 3.2 -24.6)"/><ellipse cx="-3.2" cy="-27.2" rx="2.2" ry="4.5" fill="#e8c88a" transform="rotate(-25 -3.2 -27.2)"/><ellipse cx="3.2" cy="-29.2" rx="2.2" ry="4.5" fill="#dcb46f" transform="rotate(25 3.2 -29.2)"/><ellipse cx="-3.2" cy="-31.8" rx="2.2" ry="4.5" fill="#e8c88a" transform="rotate(-25 -3.2 -31.8)"/><ellipse cx="3.2" cy="-33.8" rx="2.2" ry="4.5" fill="#dcb46f" transform="rotate(25 3.2 -33.8)"/><ellipse cx="-3.2" cy="-36.4" rx="2.2" ry="4.5" fill="#e8c88a" transform="rotate(-25 -3.2 -36.4)"/><ellipse cx="3.2" cy="-38.4" rx="2.2" ry="4.5" fill="#dcb46f" transform="rotate(25 3.2 -38.4)"/><ellipse cx="-3.2" cy="-41.0" rx="2.2" ry="4.5" fill="#e8c88a" transform="rotate(-25 -3.2 -41.0)"/><ellipse cx="3.2" cy="-43.0" rx="2.2" ry="4.5" fill="#dcb46f" transform="rotate(25 3.2 -43.0)"/><ellipse cx="-3.2" cy="-45.6" rx="2.2" ry="4.5" fill="#e8c88a" transform="rotate(-25 -3.2 -45.6)"/><ellipse cx="3.2" cy="-47.6" rx="2.2" ry="4.5" fill="#dcb46f" transform="rotate(25 3.2 -47.6)"/><ellipse cx="-3.2" cy="-50.2" rx="2.2" ry="4.5" fill="#e8c88a" transform="rotate(-25 -3.2 -50.2)"/><ellipse cx="3.2" cy="-52.2" rx="2.2" ry="4.5" fill="#dcb46f" transform="rotate(25 3.2 -52.2)"/><ellipse cx="-3.2" cy="-54.8" rx="2.2" ry="4.5" fill="#e8c88a" transform="rotate(-25 -3.2 -54.8)"/><ellipse cx="3.2" cy="-56.8" rx="2.2" ry="4.5" fill="#dcb46f" transform="rotate(25 3.2 -56.8)"/></symbol>
+<symbol id="gypso" viewBox="-18 -18 36 30"><path d="M0,10 Q-5.2,0.5 -10.4,-9.0" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="-10.4" cy="-9.0" r="1.8" fill="#fff8ec"/><path d="M0,10 Q5.2,-1.2 10.4,-12.4" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="10.4" cy="-12.4" r="1.8" fill="#fff8ec"/><path d="M0,10 Q0.7,6.8 1.4,3.7" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="1.4" cy="3.7" r="2.1" fill="#fff8ec"/><path d="M0,10 Q5.1,0.8 10.2,-8.4" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="10.2" cy="-8.4" r="1.8" fill="#fff8ec"/><path d="M0,10 Q-2.0,6.8 -4.0,3.7" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="-4.0" cy="3.7" r="2.3" fill="#fff8ec"/><path d="M0,10 Q-4.9,-0.2 -9.8,-10.5" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="-9.8" cy="-10.5" r="1.6" fill="#fff8ec"/><path d="M0,10 Q-3.7,2.8 -7.5,-4.3" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="-7.5" cy="-4.3" r="1.9" fill="#fff8ec"/><path d="M0,10 Q-3.3,-2.0 -6.6,-13.9" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="-6.6" cy="-13.9" r="1.8" fill="#fff8ec"/><path d="M0,10 Q-1.8,3.7 -3.7,-2.7" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="-3.7" cy="-2.7" r="2.3" fill="#fff8ec"/><path d="M0,10 Q2.7,3.2 5.3,-3.7" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="5.3" cy="-3.7" r="2.0" fill="#fff8ec"/><path d="M0,10 Q2.5,-1.5 4.9,-12.9" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="4.9" cy="-12.9" r="2.2" fill="#fff8ec"/><path d="M0,10 Q3.9,6.7 7.8,3.5" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="7.8" cy="3.5" r="2.1" fill="#fff8ec"/><path d="M0,10 Q-1.5,2.0 -3.0,-6.0" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="-3.0" cy="-6.0" r="1.5" fill="#fff8ec"/><path d="M0,10 Q1.9,-1.4 3.8,-12.8" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="3.8" cy="-12.8" r="1.5" fill="#fff8ec"/><path d="M0,10 Q-4.1,-0.4 -8.2,-10.8" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="-8.2" cy="-10.8" r="1.7" fill="#fff8ec"/><path d="M0,10 Q-6.3,-2.0 -12.5,-14.0" stroke="#7e8a4a" stroke-width=".5" fill="none"/><circle cx="-12.5" cy="-14.0" r="1.5" fill="#fff8ec"/></symbol>
+<symbol id="ramo" viewBox="0 0 240 200"><use href="#espiga" x="18" y="40" width="40" height="136" transform="rotate(-38 38 108)"/><use href="#espiga" x="182" y="40" width="40" height="136" transform="rotate(38 202 108)"/><use href="#hoja" x="20" y="70" width="60" height="93" transform="rotate(-62 50 116)"/><use href="#hoja" x="160" y="70" width="60" height="93" transform="rotate(62 190 116)"/><use href="#hoja" x="70" y="96" width="50" height="78" transform="rotate(-140 95 135)"/><use href="#hoja" x="122" y="96" width="50" height="78" transform="rotate(140 147 135)"/><use href="#gypso" x="34" y="34" width="54" height="45"/><use href="#gypso" x="152" y="30" width="54" height="45"/><use href="#gypso" x="96" y="132" width="50" height="42"/><use href="#girasol" x="28" y="62" width="82" height="82"/><use href="#girasol" x="132" y="62" width="82" height="82"/><use href="#girasol" x="70" y="20" width="102" height="102"/></symbol>
+<symbol id="esquina" viewBox="0 0 180 180"><use href="#espiga" x="70" y="10" width="34" height="116" transform="rotate(30 87 68)"/><use href="#hoja" x="60" y="70" width="56" height="87" transform="rotate(110 88 113)"/><use href="#hoja" x="10" y="100" width="50" height="78" transform="rotate(-160 35 139)"/><use href="#gypso" x="86" y="70" width="58" height="48"/><use href="#girasol" x="0" y="0" width="110" height="110"/><use href="#girasol" x="62" y="96" width="64" height="64"/></symbol>
+</svg>
+
+<!-- =========================================================
+     MÚSICA DE FONDO
+     Para CAMBIAR LA CANCIÓN: reemplaza el archivo musica/cancion.mp3
+     por tu canción (formato .mp3) con el MISMO nombre,
+     o cambia el src de abajo, por ejemplo: src="musica/mi-cancion.mp3"
+     ========================================================= -->
+<audio id="musica" src="https://mp3tourl.com/audio/1790825652521-c9005056-4eae-4189-bcd1-4ed615e45c42.mp3" loop preload="auto"></audio>
+
+<!-- ============ PORTADA DE ENTRADA ============ -->
+<div id="portada" class="textura">
+  <svg class="ramo" viewBox="0 0 240 200" aria-hidden="true"><use href="#ramo"/></svg>
+  <p class="bienvenida">Bienvenidos a la invitación de</p>
+  <h1 class="titulo-nombres">Estefanía y Adrian</h1>
+  <p class="nota">La música de fondo es parte de la experiencia</p>
+  <button class="btn" id="entrarConMusica">Ingresar con música</button>
+  <button class="btn" id="entrarSinMusica">Ingresar sin música</button>
+</div>
+
+<div class="petalos" id="petalos" aria-hidden="true"></div>
+
+<!-- Botón flotante de música (pausa / reproducir) -->
+<button id="musicaBtn" aria-label="Pausar o reproducir la música">
+  <svg class="nota" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+  <span class="tachado"></span>
+</button>
+
+<main>
+
+  <!-- ============ FOTO + NOMBRES ============ -->
+  <section id="hero" class="seccion" style="padding-top:0">
+    <div class="hero-foto">
+      <!-- Para cambiar la foto principal reemplaza img/foto-pareja.jpg -->
+      <img src="img/foto-pareja.jpg" alt="Estefanía y Adrian">
+      <svg class="esq izq" viewBox="0 0 180 180" aria-hidden="true"><use href="#esquina"/></svg>
+      <svg class="esq der" viewBox="0 0 180 180" aria-hidden="true"><use href="#esquina"/></svg>
+    </div>
+    <div class="contenedor">
+      <div class="fecha-caja">24.10.2026</div>
+      <h2 class="titulo-nombres nombres-hero">Estefanía</h2>
+      <div class="amp"><span>&amp;</span></div>
+      <h2 class="titulo-nombres nombres-hero" style="margin-top:0">Adrian</h2>
+      <p class="civil">Nuestra boda civil</p>
+    </div>
+  </section>
+
+  <!-- ============ FRASE + CUENTA REGRESIVA ============ -->
+  <section class="seccion reveal">
+    <div class="contenedor">
+      <span class="comillas">“</span>
+      <p class="frase">Como los girasoles buscan la luz, nosotros elegimos buscarnos cada día. Hoy comenzamos una nueva historia, escrita con amor, confianza y sueños compartidos.</p>
+      <span class="comillas" style="margin-top:14px">”</span>
+
+      <div class="reloj">
+        <svg class="ramo-reloj" viewBox="0 0 180 180" aria-hidden="true"><use href="#esquina"/></svg>
+        <h3>Falta</h3>
+        <div class="num">
+          <div><b id="cDias">--</b><small>Días</small></div>
+          <div><b id="cHoras">--</b><small>Hs</small></div>
+          <div><b id="cMin">--</b><small>Min</small></div>
+          <div><b id="cSeg">--</b><small>Seg</small></div>
+        </div>
+        <svg class="mini" viewBox="-60 -60 120 120" aria-hidden="true"><use href="#girasol"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PASE PERSONALIZADO (solo aparece si el link lleva ?para=...) ============ -->
+  <section id="pase" class="seccion reveal">
+    <div class="contenedor">
+      <div class="pase-num" id="paseNum">1</div>
+      <h2 class="titulo-fraunces" style="font-size:clamp(30px,8vw,40px)">PASES</h2>
+      <p id="paseTexto" style="color:var(--crema);margin-bottom:.8rem"></p>
+      <div><span class="chip" id="paseNombre"></span></div>
+      <p style="margin-top:1rem">Tu presencia es lo más importante. ¡No faltes!</p>
+    </div>
+  </section>
+
+  <!-- ============ PADRES ============ -->
+  <section class="seccion reveal">
+    <div class="contenedor">
+      <svg class="icono-linea" viewBox="0 0 64 64" aria-hidden="true"><circle cx="24" cy="36" r="15"/><circle cx="40" cy="36" r="15"/><path d="M28 14l4-6 4 6-4 4z"/></svg>
+      <h2 class="titulo-seccion" style="margin-bottom:.4rem">Con la bendición</h2>
+      <p style="margin-bottom:1.6rem">de Dios y de nuestros padres</p>
+      <div class="padres">
+        <div>
+          <span class="etiqueta" style="font-size:.95rem">Padres de la novia</span>
+          <p>Juan José Tasayco Gutiérrez<br>Violeta Ramírez Martínez</p>
+        </div>
+        <div>
+          <span class="etiqueta" style="font-size:.95rem">Padres del novio</span>
+          <p>Arturo Miranda Benítes<br>Marisol Rayo Villanueva</p>
+        </div>
+      </div>
+      <p style="margin-top:1.8rem;font-style:italic">Queremos compartir con ustedes este día tan especial invitándoles a nuestro matrimonio.</p>
+    </div>
+  </section>
+
+  <!-- ============ CEREMONIA Y RECEPCIÓN ============ -->
+  <section class="seccion reveal">
+    <div class="contenedor">
+      <h2 class="titulo-fraunces linea-titulo">Ceremonia civil<br>y Recepción</h2>
+      <div class="bloque">
+        <span class="etiqueta">Día</span>
+        <p>Sábado 24 de Octubre · 9:00 pm</p>
+        <a class="btn ancho" id="btnAgendar" target="_blank" rel="noopener" href="#">
+          <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V9h14z"/></svg>Agendar</a>
+      </div>
+      <div class="bloque">
+        <span class="etiqueta">Lugar</span>
+        <p>Local Comunal La Flor de Carabayllo<br>Km. 17 entre Jr. Cusco e Industrial · Carabayllo</p>
+        <a class="btn ancho" id="btnMapa" target="_blank" rel="noopener" href="#">
+          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>¿Cómo llegar?</a>
+      </div>
+      <svg class="icono-linea" viewBox="0 0 64 64" aria-hidden="true" style="margin-top:1.6rem"><path d="M12 56 30 24l12 12z"/><path d="M30 24c4-3 8-2 12 12"/><circle cx="20" cy="12" r="3"/><circle cx="50" cy="20" r="2.5"/><circle cx="46" cy="50" r="3"/><path d="M40 10l2 5M52 30l5-2M36 18l8-8"/></svg>
+    </div>
+  </section>
+
+  <svg class="onda" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true">
+    <defs><linearGradient id="oro" x1="0" x2="1"><stop offset="0" stop-color="#FFF3E3" stop-opacity=".2"/><stop offset=".5" stop-color="#FFF3E3" stop-opacity=".9"/><stop offset="1" stop-color="#FFF3E3" stop-opacity=".3"/></linearGradient></defs>
+    <path d="M0,40 C120,0 260,70 400,18 L400,30 C260,80 120,14 0,52Z" fill="url(#oro)"/>
+  </svg>
+
+  <!-- ============ CONFIRMAR ASISTENCIA ============ -->
+  <section class="seccion reveal" id="confirmar">
+    <div class="contenedor">
+      <h2 class="titulo-seccion">Confirmar<br>Asistencia</h2>
+      <p style="margin:1rem 0 1.6rem">Es muy importante para nosotros que confirmes tu asistencia</p>
+      <a class="btn" id="btnConfirmar" target="_blank" rel="noopener" href="#">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3z"/></svg>
+        Confirmar asistencia</a>
+    </div>
+  </section>
+
+  <!-- ============ RETRATOS ============ -->
+  <section class="seccion reveal">
+    <div class="contenedor">
+      <h2 class="titulo-seccion">Retratos de<br>Nuestro Amor</h2>
+      <p style="margin:1rem auto 1.6rem;max-width:380px">Un minuto, un segundo, un instante que queda en la eternidad</p>
+      <div class="galeria" id="galeria"></div>
+      <div class="puntos" id="puntos"></div>
+    </div>
+  </section>
+
+  <!-- ============ FIESTA (tarjetas) ============ -->
+  <section class="seccion reveal fiesta">
+    <div class="contenedor">
+      <h2 class="titulo-seccion">Fiesta</h2>
+      <p style="margin:1rem auto 0;max-width:420px">Hagamos juntos una noche inolvidable. Aquí algunos detalles a tener en cuenta.</p>
+      <div class="tarjetas">
+        <div class="tarjeta">
+          <svg class="flor" viewBox="0 0 180 180" aria-hidden="true"><use href="#esquina"/></svg>
+          <h4>MÚSICA</h4>
+          <svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><path d="M24 46V14l28-6v32"/><circle cx="18" cy="46" r="6"/><circle cx="46" cy="40" r="6"/></svg>
+          <p>¿Cuál es la canción que no debe faltar en la playlist de la fiesta?</p>
+          <a class="btn oscuro ancho" id="btnCancion" target="_blank" rel="noopener" href="#">Sugerir canción</a>
+        </div>
+        <div class="tarjeta">
+          <h4>DRESS CODE</h4>
+          <svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><path d="M8 20c8 0 16 6 20 10-4 4-12 10-20 10-2 0-2-20 0-20zM56 20c-8 0-16 6-20 10 4 4 12 10 20 10 2 0 2-20 0-20z"/><rect x="27" y="25" width="10" height="10" rx="2"/></svg>
+          <p><b>Sport elegante</b><br>Una orientación para tu vestuario</p>
+          <button class="btn oscuro ancho" data-modal="modalDress">Ver más</button>
+        </div>
+        <div class="tarjeta">
+          <h4>TIPS Y NOTAS</h4>
+          <svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><rect x="14" y="10" width="36" height="46" rx="4"/><path d="M26 10V6h12v4M22 24h20M22 32h20M22 40h12"/></svg>
+          <p>Información adicional para tener en cuenta</p>
+          <button class="btn oscuro ancho" data-modal="modalTips">+ Info</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="onda" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C120,0 260,70 400,18 L400,30 C260,80 120,14 0,52Z" fill="url(#oro)"/></svg>
+
+  <!-- ============ REGALOS ============ -->
+  <section class="seccion reveal" id="regalos">
+    <div class="contenedor">
+      <h2 class="titulo-seccion">Regalos</h2>
+      <p style="margin:1rem auto 1.4rem;max-width:400px">Si deseas regalarnos algo más que tu hermosa presencia…</p>
+      <svg class="icono-linea" viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="24" width="44" height="10" rx="1"/><path d="M14 34v22h36V34M32 24v32M32 24c-4-8-14-12-14-4 0 4 8 4 14 4zM32 24c4-8 14-12 14-4 0 4-8 4-14 4z"/></svg>
+      <button class="btn" data-modal="modalRegalos">Ver más</button>
+    </div>
+  </section>
+
+  <!-- ============ COMPARTIR / HASHTAG ============ -->
+  <section id="compartir" class="reveal">
+    <div class="fondo"></div>
+    <div class="contenido">
+      <h2 class="titulo-seccion" style="color:#fff">Compartimos este<br>día junto a ti</h2>
+      <p style="margin-top:1rem">Comparte tus fotos y videos de este hermoso día con nuestro hashtag</p>
+      <p class="hashtag" id="hashtag"></p>
+      <button class="btn" id="btnHashtag">Copiar hashtag</button>
+    </div>
+  </section>
+
+  <!-- ============ PIE ============ -->
+  <footer>
+    <h2 class="titulo-nombres">Estefanía</h2>
+    <span class="amp-mini">&amp;</span>
+    <h2 class="titulo-nombres">Adrian</h2>
+    <nav>
+      <a href="#confirmar">Confirmar asistencia</a>
+      <a href="#" id="lnkCancion" target="_blank" rel="noopener">Sugerir canción</a>
+      <a href="#" id="lnkAgendar" target="_blank" rel="noopener">Agendar la boda</a>
+      <a href="#regalos">Regalos</a>
+    </nav>
+  </footer>
+  <div class="pie-final">Con amor, Estefanía &amp; Adrian · 24.10.2026 🌻</div>
+</main>
+
+<!-- ============ MODALES ============ -->
+<dialog id="modalDress"><div class="modal">
+  <button class="cerrar" aria-label="Cerrar">×</button>
+  <h3>Sport Elegante</h3>
+  <ul>
+    <li><b>Ellas:</b> vestido, falda o pantalón de vestir con una blusa bonita. Cómodo y elegante a la vez.</li>
+    <li><b>Ellos:</b> pantalón de vestir o chino, camisa y, si deseas, saco. La corbata es opcional.</li>
+    <li>Con todo cariño, reservamos el color blanco para la novia.</li>
+  </ul>
+</div></dialog>
+
+<!-- Puedes editar estos tips libremente -->
+<dialog id="modalTips"><div class="modal">
+  <button class="cerrar" aria-label="Cerrar">×</button>
+  <h3>Tips y notas</h3>
+  <ul>
+    <li>Te recomendamos llegar 15 minutos antes; la ceremonia civil empieza a las 9:00 pm.</li>
+    <li>Las noches de octubre pueden ser frescas, lleva un abrigo ligero.</li>
+    <li>Confírmanos tu asistencia lo antes posible, nos ayuda mucho con la organización.</li>
+    <li>¡Ven con muchas ganas de bailar!</li>
+  </ul>
+</div></dialog>
+
+<dialog id="modalRegalos"><div class="modal">
+  <button class="cerrar" aria-label="Cerrar">×</button>
+  <h3>Lluvia de sobres</h3>
+  <p style="text-align:center">Su presencia y cariño son nuestro mejor regalo. Si desean tener un detalle con nosotros, una muestra de cariño en sobre será muy bien recibida y nos ayudará a dar los primeros pasos en nuestro nuevo hogar.</p>
+  <div class="pagos">
+    <div class="pago"><span class="app yape">Yape</span><span class="numero" id="numYape"></span><span class="titular" id="titYape"></span><button class="copiar" data-copiar="yape">Copiar número</button></div>
+    <div class="pago"><span class="app plin">Plin</span><span class="numero" id="numPlin"></span><span class="titular" id="titPlin"></span><button class="copiar" data-copiar="plin">Copiar número</button></div>
+  </div>
+  <p style="text-align:center;font-style:italic;margin:0">Con todo nuestro amor, ¡gracias!</p>
+</div></dialog>
+
+<div id="aviso">¡Copiado!</div>
+
+<script>
+/* =========================================================
+   DATOS EDITABLES — cambia aquí tus datos
+   ========================================================= */
+const CONFIG = {
+  // Fecha y hora de la boda (hora de Lima, UTC-5)
+  fechaBoda: "2026-10-24T21:00:00-05:00",
+
+  // ⚠️ CAMBIA por tus números reales (solo números, sin espacios)
+  yape: { numero: "907859353", titular: "Adrian Miranda" },
+  plin: { numero: "960806732", titular: "Estefanía Tasayco" },
+
+  // WhatsApp para confirmar asistencia y sugerir canciones (51 + celular)
+  whatsapp: "51907859353",
+  mensajeConfirmar: "¡Hola Estefanía y Adrian! 🌻 Confirmo mi asistencia a su boda civil el sábado 24 de octubre. Mi nombre es: ",
+  mensajeCancion: "¡Hola Estefanía y Adrian! 🎶 Una canción que no puede faltar en su fiesta es: ",
+
+  // Ubicación: puedes pegar aquí el link exacto de Google Maps (Compartir → Copiar vínculo)
+  mapa: "https://maps.app.goo.gl/usyvLbLLALYhu3L49",
+
+  // Fotos de la galería "Retratos de nuestro amor". Agrega más así:
+  // ["img/foto-pareja.jpg", "img/foto2.jpg", "img/foto3.jpg"]
+  fotos: ["img/foto-pareja.jpg"] ["img/foto2.jpg"] ["img/foto3.jpg"],
+
+  hashtag: "#EstefaniaYAdrian",
+
+  // Volumen de la música (0.0 a 1.0)
+  volumen: 0.6
+};
+
+const $ = id => document.getElementById(id);
+const wa = msg => "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg);
+
+/* ---- Enlaces ---- */
+const gcal = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+  + "&text=" + encodeURIComponent("Boda civil de Estefanía & Adrian 🌻")
+  + "&dates=20261025T020000Z/20261025T080000Z"
+  + "&details=" + encodeURIComponent("Ceremonia civil y recepción. Vestimenta: sport elegante.")
+  + "&location=" + encodeURIComponent("Local Comunal La Flor de Carabayllo, Km. 17 entre Jr. Cusco e Industrial, Carabayllo");
+$("btnAgendar").href = $("lnkAgendar").href = gcal;
+$("btnMapa").href = CONFIG.mapa;
+$("btnConfirmar").href = wa(CONFIG.mensajeConfirmar);
+$("btnCancion").href = $("lnkCancion").href = wa(CONFIG.mensajeCancion);
+$("hashtag").textContent = CONFIG.hashtag;
+
+/* ---- Regalos ---- */
+const fmt = n => n.replace(/(\d{3})(\d{3})(\d{3})/, "$1 $2 $3");
+$("numYape").textContent = fmt(CONFIG.yape.numero); $("titYape").textContent = CONFIG.yape.titular;
+$("numPlin").textContent = fmt(CONFIG.plin.numero); $("titPlin").textContent = CONFIG.plin.titular;
+
+async function copiar(txt, msg){
+  try { await navigator.clipboard.writeText(txt); }
+  catch(e){ const t=document.createElement("textarea"); t.value=txt; document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove(); }
+  const a=$("aviso"); a.textContent=msg; a.classList.add("ver"); setTimeout(()=>a.classList.remove("ver"),1800);
+}
+document.querySelectorAll("[data-copiar]").forEach(b => b.onclick = () => copiar(CONFIG[b.dataset.copiar].numero, "¡Número copiado!"));
+$("btnHashtag").onclick = () => copiar(CONFIG.hashtag, "¡Hashtag copiado!");
+
+/* ---- Modales ---- */
+document.querySelectorAll("[data-modal]").forEach(b => b.onclick = () => $(b.dataset.modal).showModal());
+document.querySelectorAll("dialog").forEach(d => {
+  d.querySelector(".cerrar").onclick = () => d.close();
+  d.addEventListener("click", e => { if (e.target === d) d.close(); });
+});
+
+/* ---- Pase personalizado ----
+   Envía a cada invitado un link así:
+   https://TU-USUARIO.github.io/TU-REPO/?para=Familia%20García&pases=3          */
+const q = new URLSearchParams(location.search);
+if (q.get("para")) {
+  const n = parseInt(q.get("pases") || "1", 10) || 1;
+  $("pase").style.display = "block";
+  $("paseNum").textContent = n;
+  $("paseNombre").textContent = q.get("para");
+  $("paseTexto").textContent = n === 1 ? "Hemos reservado 1 lugar para" : "Hemos reservado " + n + " lugares para";
+}
+
+/* ---- Galería ---- */
+const gal = $("galeria"), pts = $("puntos");
+CONFIG.fotos.forEach((src, i) => {
+  const f = document.createElement("figure");
+  f.innerHTML = '<img loading="lazy" alt="Estefanía y Adrian"><figcaption>Estefanía &amp; Adrian</figcaption>';
+  f.querySelector("img").src = src;
+  gal.appendChild(f);
+  if (CONFIG.fotos.length > 1) pts.appendChild(document.createElement("span"));
+});
+if (CONFIG.fotos.length === 1) gal.classList.add("unica");
+function marcarPunto(){
+  const figs=[...gal.children]; if(figs.length<2) return;
+  const c = gal.scrollLeft + gal.clientWidth/2;
+  let k=0, best=1e9; figs.forEach((f,i)=>{const d=Math.abs(f.offsetLeft+f.offsetWidth/2-c); if(d<best){best=d;k=i}});
+  [...pts.children].forEach((p,i)=>p.classList.toggle("on",i===k));
+}
+gal.addEventListener("scroll", marcarPunto, {passive:true}); marcarPunto();
+
+/* ---- Música ---- */
+const musica = $("musica"), mBtn = $("musicaBtn");
+musica.volume = CONFIG.volumen;
+const act = () => mBtn.classList.toggle("sonando", !musica.paused);
+musica.addEventListener("play", act); musica.addEventListener("pause", act);
+mBtn.onclick = () => musica.paused ? musica.play() : musica.pause();
+
+function entrar(conMusica){
+  $("portada").classList.add("oculto");
+  document.body.classList.remove("bloqueado");
+  if (conMusica) musica.play().catch(()=>{});
+  window.scrollTo(0,0);
+}
+$("entrarConMusica").onclick = () => entrar(true);
+$("entrarSinMusica").onclick = () => entrar(false);
+
+/* ---- Cuenta regresiva ---- */
+const meta = new Date(CONFIG.fechaBoda).getTime(), pad = n => String(n).padStart(2,"0");
+function tick(){
+  let d = Math.max(0, meta - Date.now());
+  $("cDias").textContent = Math.floor(d/864e5); d%=864e5;
+  $("cHoras").textContent = Math.floor(d/36e5); d%=36e5;
+  $("cMin").textContent = pad(Math.floor(d/6e4)); $("cSeg").textContent = pad(Math.floor((d%6e4)/1e3));
+}
+tick(); setInterval(tick, 1000);
+
+/* ---- Pétalos de girasol cayendo ---- */
+for (let i=0;i<9;i++){
+  const p=document.createElement("i");
+  p.style.left = Math.random()*100 + "%";
+  p.style.animationDuration = 12 + Math.random()*10 + "s";
+  p.style.animationDelay = -Math.random()*20 + "s";
+  p.style.transform = "scale(" + (0.6+Math.random()*0.6) + ")";
+  $("petalos").appendChild(p);
+}
+
+/* ---- Aparición al hacer scroll ---- */
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("visible"); obs.unobserve(e.target);} }), {threshold:.12});
+document.querySelectorAll(".reveal").forEach(s => obs.observe(s));
+</script>
+</body>
+</html>

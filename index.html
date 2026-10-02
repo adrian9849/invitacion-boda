@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Estefania & Adrian · Nuestra Boda Civil</title>
-<meta name="description" content="Estefanía & Adrian te invitan a su boda civil · Sábado 24 de octubre de 2026 · 9:00 pm">
+<meta name="description" content="Estefania & Adrian te invitan a su boda civil · Sábado 24 de octubre de 2026 · 9:00 pm">
 <!-- Vista previa al compartir el link (WhatsApp / Facebook) -->
 <meta property="og:title" content="Estefania & Adrian · ¡Nos casamos!">
 <meta property="og:description" content="Sábado 24 de octubre de 2026 · 9:00 pm · Local Comunal La Flor de Carabayllo">
-<meta property="og:image" content="img/preview.png">
+<meta property="og:image" content="img/preview.jpg">
 <meta name="theme-color" content="#DC834C">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,20 +94,29 @@ main{overflow-x:clip}
 @keyframes aparecer{from{opacity:0;transform:scale(.85) translateY(10px)}to{opacity:1;transform:none}}
 
 /* ============ PORTADA CON FOTO ============ */
-#hero{padding:0 0 40px}
-.hero-foto{position:relative;max-width:620px;margin:0 auto}
-.hero-foto img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 62%;max-height:92vh;border-radius:0 0 50% 50% / 0 0 46px 46px;box-shadow:0 14px 30px rgba(90,35,10,.25)}
-.hero-foto .curva{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:auto}
-.hero-foto .esq{position:absolute;bottom:-50px;width:clamp(130px,36vw,190px);height:auto;aspect-ratio:1;z-index:3;filter:drop-shadow(0 6px 10px rgba(80,30,5,.25))}
-.hero-foto .esq.izq{left:-16px;transform:rotate(-10deg)}
-.hero-foto .esq.der{right:-16px;transform:scaleX(-1) rotate(-10deg)}
-.fecha-caja{display:inline-block;margin-top:46px;padding:.35rem 1.4rem;border:1.5px solid var(--crema);
-  font-family:'Fraunces',serif;font-weight:600;font-size:clamp(22px,6vw,28px);color:var(--crema);letter-spacing:.06em}
-.nombres-hero{font-size:clamp(64px,19vw,104px);margin-top:1.4rem}
-.amp{display:flex;align-items:center;justify-content:center;gap:14px;margin:.4rem auto;max-width:360px}
-.amp::before,.amp::after{content:"";flex:1;height:1.5px;background:rgba(255,243,227,.75)}
-.amp span{width:58px;height:58px;border-radius:50%;border:1.5px solid rgba(255,243,227,.75);display:flex;align-items:center;justify-content:center;
-  font-family:'Great Vibes',cursive;color:var(--crema);font-size:34px;padding-top:4px}
+/* Portada difuminada: foto nítida arriba que se funde en una versión desenfocada */
+#hero{position:relative;overflow:hidden;padding:0 0 64px;text-align:center}
+.hero-fondo{position:absolute;inset:-40px -40px 0;z-index:0;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 100%);mask-image:linear-gradient(180deg,#000 72%,transparent 100%)}
+.hero-fondo img{width:100%;height:100%;object-fit:cover;object-position:center 60%;
+  filter:blur(26px) saturate(1.15) brightness(.85);transform:scale(1.2)}
+.hero-fondo::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(70,35,15,.15) 0%, rgba(70,35,15,.3) 55%, rgba(220,131,76,.55) 85%, rgba(220,131,76,.2) 100%)}
+.hero-img{position:relative;z-index:1;display:block;width:100%;max-width:900px;margin:0 auto;
+  aspect-ratio:2/3;max-height:90vh;object-fit:cover;object-position:center 40%;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 80%,rgba(0,0,0,.55) 91%,transparent 100%);
+          mask-image:linear-gradient(180deg,#000 0%,#000 80%,rgba(0,0,0,.55) 91%,transparent 100%)}
+@media (min-width:700px){ .hero-img{aspect-ratio:16/10;max-height:86vh;object-position:center 42%;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 70%,transparent 100%),linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(180deg,#000 0%,#000 70%,transparent 100%),linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+  mask-composite:intersect} }
+.hero-texto{position:relative;z-index:2;margin-top:4px;padding:0 20px}
+@media (min-width:700px){ .hero-texto{margin-top:-34px} }
+.nombres-hero{font-size:clamp(42px,11.5vw,92px);color:#fffaf2;text-shadow:0 2px 18px rgba(50,20,5,.45),0 1px 0 rgba(50,20,5,.3)}
+.nombres-hero .y{font-family:'Fraunces',serif;font-weight:500;font-style:italic;color:var(--girasol);padding:0 .12em}
+.hero-sep{display:block;width:44px;height:44px;margin:1rem auto .4rem;filter:drop-shadow(0 3px 6px rgba(50,20,5,.35));animation:girar 24s linear infinite}
+.fecha-caja{display:inline-block;margin-top:.4rem;padding:.35rem 1.4rem;border:1.5px solid rgba(255,243,227,.85);backdrop-filter:blur(4px);background:rgba(255,243,227,.08);
+  font-family:'Fraunces',serif;font-weight:600;font-size:clamp(20px,5.5vw,26px);color:var(--crema);letter-spacing:.06em}
 .civil{margin-top:1.2rem;font-family:'Bodoni Moda',serif;letter-spacing:.32em;font-size:.82rem;color:var(--crema);text-transform:uppercase}
 
 /* ============ FRASE + CUENTA REGRESIVA ============ */
@@ -304,19 +313,22 @@ function entrarInvitacion(conMusica){
 
 <main>
 
-  <!-- ============ FOTO + NOMBRES ============ -->
-  <section id="hero" class="seccion" style="padding-top:0">
-    <div class="hero-foto">
-      <!-- Para cambiar la foto principal reemplaza img/foto-pareja.jpg -->
-      <img src="img/foto-pareja.jpg" alt="Estefania y Adrian">
-      <svg class="esq izq" viewBox="0 0 180 180" aria-hidden="true"><use href="#esquina"/></svg>
-      <svg class="esq der" viewBox="0 0 180 180" aria-hidden="true"><use href="#esquina"/></svg>
+  <!-- ============ PORTADA PRINCIPAL (FOTO + NOMBRES) ============
+       👉 PARA CAMBIAR LA FOTO DE LA PORTADA:
+          reemplaza el archivo img/portada.jpg por tu foto (mismo nombre),
+          o cambia "img/portada.jpg" en las DOS líneas marcadas con ★ abajo.
+       Funciona con fotos verticales u horizontales.
+       Si quieres mover qué parte de la foto se ve, busca ".hero-img" en el CSS
+       y cambia "object-position: center 40%" (más % = se ve más abajo de la foto). -->
+  <section id="hero">
+    <div class="hero-fondo" aria-hidden="true">
+      <img src="img/portada.jpg" alt="">  <!-- ★ foto desenfocada de fondo -->
     </div>
-    <div class="contenedor">
+    <img class="hero-img" src="img/portada.jpg" alt="Estefania y Adrian">  <!-- ★ foto principal -->
+    <div class="hero-texto">
+      <h1 class="titulo-nombres nombres-hero">Estefania <span class="y">y</span> Adrian</h1>
+      <svg class="hero-sep" aria-hidden="true"><use href="#girasol" width="100%" height="100%"/></svg>
       <div class="fecha-caja">24.10.2026</div>
-      <h2 class="titulo-nombres nombres-hero">Estefania</h2>
-      <div class="amp"><span>&amp;</span></div>
-      <h2 class="titulo-nombres nombres-hero" style="margin-top:0">Adrian</h2>
       <p class="civil">Nuestra boda civil</p>
     </div>
   </section>
@@ -337,7 +349,7 @@ function entrarInvitacion(conMusica){
           <div><b id="cMin">--</b><small>Min</small></div>
           <div><b id="cSeg">--</b><small>Seg</small></div>
         </div>
-        <svg class="mini" viewBox="-60 -60 120 120" aria-hidden="true"><use href="#girasol"/></svg>
+        <svg class="mini" aria-hidden="true"><use href="#girasol" width="100%" height="100%"/></svg>
       </div>
     </div>
   </section>
@@ -473,7 +485,7 @@ function entrarInvitacion(conMusica){
 
   <!-- ============ PIE ============ -->
   <footer>
-    <h2 class="titulo-nombres">Estefanía</h2>
+    <h2 class="titulo-nombres">Estefania</h2>
     <span class="amp-mini">&amp;</span>
     <h2 class="titulo-nombres">Adrian</h2>
     <nav>
@@ -483,7 +495,7 @@ function entrarInvitacion(conMusica){
       <a href="#regalos">Regalos</a>
     </nav>
   </footer>
-  <div class="pie-final">Con amor, Estefanía &amp; Adrian · 24.10.2026 🌻</div>
+  <div class="pie-final">Con amor, Estefania &amp; Adrian · 24.10.2026 🌻</div>
 </main>
 
 <!-- ============ MODALES ============ -->
@@ -538,8 +550,8 @@ const CONFIG = {
 
   // WhatsApp para confirmar asistencia y sugerir canciones (51 + celular)
   whatsapp: "51907859353",
-  mensajeConfirmar: "¡Hola Estefanía y Adrian! 🌻 Confirmo mi asistencia a su boda civil el sábado 24 de octubre. Mi nombre es: ",
-  mensajeCancion: "¡Hola Estefanía y Adrian! 🎶 Una canción que no puede faltar en su fiesta es: ",
+  mensajeConfirmar: "¡Hola Estefania y Adrian! 🌻 Confirmo mi asistencia a su boda civil el sábado 24 de octubre. Mi nombre es: ",
+  mensajeCancion: "¡Hola Estefania y Adrian! 🎶 Una canción que no puede faltar en su fiesta es: ",
 
   // Ubicación: puedes pegar aquí el link exacto de Google Maps (Compartir → Copiar vínculo)
   mapa: "https://maps.app.goo.gl/usyvLbLLALYhu3L49",
@@ -548,9 +560,9 @@ const CONFIG = {
   // src = archivo dentro de la carpeta img ; pos = qué parte de la foto se ve (opcional)
   // ⚠️ Cuida que cada línea termine en coma, menos la última.
   fotos: [
-    { src: "img/foto-pareja.png", pos: "center 62%" },
-    { src: "img/foto2.jpeg",       pos: "center 40%" },
-    { src: "img/foto3.JPG",       pos: "center 35%" }
+    { src: "img/foto-pareja.jpg", pos: "center 62%" },
+    { src: "img/foto2.jpg",       pos: "center 40%" },
+    { src: "img/foto3.jpg",       pos: "center 35%" }
   ],
 
   hashtag: "#EstefaniaYAdrian",
@@ -564,7 +576,7 @@ const wa = msg => "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURICompo
 
 /* ---- Enlaces ---- */
 const gcal = "https://calendar.google.com/calendar/render?action=TEMPLATE"
-  + "&text=" + encodeURIComponent("Boda civil de Estefanía & Adrian 🌻")
+  + "&text=" + encodeURIComponent("Boda civil de Estefania & Adrian 🌻")
   + "&dates=20261025T020000Z/20261025T080000Z"
   + "&details=" + encodeURIComponent("Ceremonia civil y recepción. Vestimenta: sport elegante.")
   + "&location=" + encodeURIComponent("Local Comunal La Flor de Carabayllo, Km. 17 entre Jr. Cusco e Industrial, Carabayllo");
@@ -610,7 +622,7 @@ const gal = $("galeria"), pts = $("puntos");
 CONFIG.fotos.forEach((foto, i) => {
   const src = typeof foto === "string" ? foto : foto.src;
   const f = document.createElement("figure");
-  f.innerHTML = '<img loading="lazy" alt="Estefanía y Adrian"><figcaption>Estefanía &amp; Adrian</figcaption>';
+  f.innerHTML = '<img loading="lazy" alt="Estefania y Adrian"><figcaption>Estefania &amp; Adrian</figcaption>';
   f.querySelector("img").src = src;
   if (foto.pos) f.querySelector("img").style.objectPosition = foto.pos;
   gal.appendChild(f);
